@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottom_action_home"
+        android:icon="@drawable/ic_image_black_24dp"
+        android:title="Photos" />
+    <item
+        android:id="@+id/bottom_action_video"
+        android:icon="@drawable/ic_video_library_black_24dp"
+
+        android:title="Videos" />
+    <item
+        android:id="@+id/bottom_action_profile"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="Profile" />
+
+</menu>

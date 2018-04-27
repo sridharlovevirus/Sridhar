@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/msgbox"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="@string/action_search_text"
+        app:showAsAction="always" />
+       <item
+        android:id="@+id/slambook"
+        android:title="Slam Book" />
+    <item
+        android:id="@+id/about"
+        android:title="About app" />
+    <item
+        android:id="@+id/action_logout_btn"
+        android:title="@string/action_logout_text" />
+</menu>

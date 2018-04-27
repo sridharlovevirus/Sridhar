@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "759527201976",
+    "firebase_url": "https://lookback-5e389.firebaseio.com",
+    "project_id": "lookback-5e389",
+    "storage_bucket": "lookback-5e389.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759527201976:android:a2543d47e447e233",
+        "android_client_info": {
+          "package_name": "tech.lovevirus.lookback"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "759527201976-alrfmamuon9ih1up2jcgvq27gl8bhjc8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tech.lovevirus.lookback",
+            "certificate_hash": "8fbdceb500782f96d6409acf7aaaf05140f9307f"
+          }
+        },
+        {
+          "client_id": "759527201976-9ccaogftijch2vkpc7mh1hc2n3kf4q3u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARpXa0WkXu1wvLVuZPw81zXWtsu7hfxtE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "759527201976-9ccaogftijch2vkpc7mh1hc2n3kf4q3u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
