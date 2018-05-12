@@ -2,7 +2,9 @@ package tech.lovevirus.lookback;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Point;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +35,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import org.w3c.dom.Text;
 
+import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Field;
 import java.util.Date;
 import java.util.HashMap;
@@ -75,8 +79,8 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
         String desc_data = blog_list.get(position).getDesc();
         holder.setDescText(desc_data);
 
-        String image_url = blog_list.get(position).getImage_url();
-        String thumbUri = blog_list.get(position).getImage_thumb();
+        final String image_url = blog_list.get(position).getImage_url();
+        final String thumbUri = blog_list.get(position).getImage_thumb();
         holder.setBlogImage(image_url, thumbUri);
 
         String user_id = blog_list.get(position).getUser_id();
@@ -195,14 +199,28 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
                 });
             }
         });
+        holder.blogImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               // Toast.makeText(context,"uclicked0",Toast.LENGTH_LONG).show();
+                Intent _intent = new Intent(context,FullImageView.class);
+                _intent.putExtra("bid", blogPostId);
+                _intent.putExtra("url", image_url);
+                _intent.putExtra("turl", thumbUri);
+                context.startActivity(_intent);
+
+            }
+        });
 
         holder.blogCommentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent commentIntent = new Intent(context, CommentsActivity.class);
-                commentIntent.putExtra("blog_post_id", blogPostId);
-                context.startActivity(commentIntent);
+                Intent _intent = new Intent(context,FullImageView.class);
+                _intent.putExtra("bid", blogPostId);
+                _intent.putExtra("url", image_url);
+                _intent.putExtra("turl", thumbUri);
+                context.startActivity(_intent);
 
             }
         });
@@ -276,6 +294,7 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
             blogUserName = mView.findViewById(R.id.blog_user_name);
 
             blogUserName.setText(name);
+
 
             RequestOptions placeholderOption = new RequestOptions();
             placeholderOption.placeholder(R.drawable.profile_placeholder);

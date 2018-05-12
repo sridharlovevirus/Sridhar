@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -43,7 +44,7 @@ public class HomeFragment extends Fragment {
     private FirebaseFirestore firebaseFirestore;
     private FirebaseAuth firebaseAuth;
     private BlogRecyclerAdapter blogRecyclerAdapter;
-
+    private ProgressBar loadbar;
     private DocumentSnapshot lastVisible;
     private Boolean isFirstPageFirstLoad = true;
 
@@ -60,7 +61,7 @@ public class HomeFragment extends Fragment {
 
         blog_list = new ArrayList<>();
         blog_list_view = view.findViewById(R.id.blog_list_view);
-
+loadbar=(ProgressBar)view.findViewById(R.id.load);
         firebaseAuth = FirebaseAuth.getInstance();
 
         blogRecyclerAdapter = new BlogRecyclerAdapter(blog_list);
@@ -80,8 +81,9 @@ public class HomeFragment extends Fragment {
                     Boolean reachedBottom = !recyclerView.canScrollVertically(1);
 
                     if(reachedBottom){
-Toast.makeText(getActivity(),"Loading Memoreies plz wait!!",Toast.LENGTH_SHORT).show();
+loadbar.setVisibility(View.VISIBLE);
                         loadMorePost();
+
 
                     }
 
@@ -164,9 +166,19 @@ Toast.makeText(getActivity(),"Loading Memoreies plz wait!!",Toast.LENGTH_SHORT).
                                 blog_list.add(blogPost);
 
                                 blogRecyclerAdapter.notifyDataSetChanged();
+                                loadbar.setVisibility(View.INVISIBLE);
+                            }
+                            else
+                            {
+                                loadbar.setVisibility(View.INVISIBLE);
                             }
 
                         }
+                    }
+                    else {
+                        loadbar.setVisibility(View.INVISIBLE);
+                        Toast.makeText(getContext(),"No new Post Available",Toast.LENGTH_LONG).show();
+
                     }
 
                 }

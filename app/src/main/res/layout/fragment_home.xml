@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:tag="homeFragment"
     android:background="@android:color/white"
-    tools:context=".HomeFragment">
+    tools:context=".HomeFragment"
+   >
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -13,4 +14,13 @@
         android:id="@+id/blog_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    <ProgressBar
+        android:id="@+id/load"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="invisible"
+      android:background="@color/colorPrimaryDark"
+        />
 </FrameLayout>
