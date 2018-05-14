@@ -82,8 +82,8 @@ public class ProfileFragment extends Fragment {
                         String rollno = task.getResult().getString("rollno");
                         mainImageURI = Uri.parse(image);
 
-                        user.setText("Name:"+name);
-                        rollno1.setText("Rollno:"+rollno);
+                        user.setText(name);
+                        rollno1.setText(rollno);
                         RequestOptions placeholderRequest = new RequestOptions();
                         placeholderRequest.placeholder(R.drawable.default_image);
 
