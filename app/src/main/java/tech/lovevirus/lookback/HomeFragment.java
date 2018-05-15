@@ -18,6 +18,7 @@ import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,7 +41,7 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView blog_list_view;
     private List<BlogPost> blog_list;
-
+    LottieAnimationView lw;
     private FirebaseFirestore firebaseFirestore;
     private FirebaseAuth firebaseAuth;
     private BlogRecyclerAdapter blogRecyclerAdapter;
@@ -63,12 +64,12 @@ public class HomeFragment extends Fragment {
         blog_list_view = view.findViewById(R.id.blog_list_view);
 loadbar=(ProgressBar)view.findViewById(R.id.load);
         firebaseAuth = FirebaseAuth.getInstance();
-
+        lw=(LottieAnimationView)view.findViewById(R.id.animation_view);
         blogRecyclerAdapter = new BlogRecyclerAdapter(blog_list);
         blog_list_view.setLayoutManager(new LinearLayoutManager(container.getContext()));
         blog_list_view.setAdapter(blogRecyclerAdapter);
         blog_list_view.setHasFixedSize(true);
-
+        lw.setVisibility(View.INVISIBLE);
         if(firebaseAuth.getCurrentUser() != null) {
 
             firebaseFirestore = FirebaseFirestore.getInstance();
@@ -81,7 +82,8 @@ loadbar=(ProgressBar)view.findViewById(R.id.load);
                     Boolean reachedBottom = !recyclerView.canScrollVertically(1);
 
                     if(reachedBottom){
-loadbar.setVisibility(View.VISIBLE);
+//loadbar.setVisibility(View.VISIBLE);
+lw.setVisibility(View.VISIBLE);
                         loadMorePost();
 
 
@@ -166,17 +168,17 @@ loadbar.setVisibility(View.VISIBLE);
                                 blog_list.add(blogPost);
 
                                 blogRecyclerAdapter.notifyDataSetChanged();
-                                loadbar.setVisibility(View.INVISIBLE);
+                                lw.setVisibility(View.INVISIBLE);
                             }
                             else
                             {
-                                loadbar.setVisibility(View.INVISIBLE);
+                                lw.setVisibility(View.INVISIBLE);
                             }
 
                         }
                     }
                     else {
-                        loadbar.setVisibility(View.INVISIBLE);
+                        lw.setVisibility(View.INVISIBLE);
                         Toast.makeText(getContext(),"No new Post Available",Toast.LENGTH_LONG).show();
 
                     }

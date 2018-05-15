@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -19,13 +20,15 @@ import com.google.firebase.auth.FirebaseUser;
 public class Welcome extends AppCompatActivity {
     private static int time =12000;
     ProgressBar progressBar;
+    LottieAnimationView lw;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+        lw=(LottieAnimationView)findViewById(R.id.animation_view);
      progressBar=(ProgressBar)findViewById(R.id.pro);
-     progressBar.setVisibility(View.VISIBLE);
-        Toast.makeText(getApplicationContext(),"Peace Bro",Toast.LENGTH_LONG).show();
+        lw.setVisibility(View.VISIBLE);
+
         final SQLiteHelper sqLiteHelper=new SQLiteHelper(Welcome.this);
         String ls1[] =new String[10];
         ls1=sqLiteHelper.viewdata();
@@ -49,8 +52,8 @@ public class Welcome extends AppCompatActivity {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            progressBar.setVisibility(View.INVISIBLE);
-                            Toast.makeText(getApplicationContext(),"Loading Done!!",Toast.LENGTH_LONG).show();
+                            lw.setVisibility(View.INVISIBLE);
+                         //   Toast.makeText(getApplicationContext(),"Loading Done!!",Toast.LENGTH_LONG).show();
                             Intent i = new Intent(getApplicationContext(), login.class);
                             startActivity(i);
                             finish();
@@ -60,7 +63,7 @@ public class Welcome extends AppCompatActivity {
         new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                progressBar.setVisibility(View.INVISIBLE);
+                lw.setVisibility(View.INVISIBLE);
                 Intent i = new Intent(getApplicationContext(), Feedback.class);
                 startActivity(i);
                 finish();
